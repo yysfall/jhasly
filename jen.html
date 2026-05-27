@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Baby!</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    box-sizing:border-box;
+
+    font-family:"Courier Prime", monospace;
+    font-weight:400;
+    font-style:normal;
+}
+
+body{
+    margin:0;
+    padding:0;
+
+    min-height:100vh;
+
+    display:flex;
+
+    background:
+    linear-gradient(
+        rgba(0,18,0,0.90),
+        rgba(0,18,0,0.90)
+    ),
+    url("texture.png");
+
+    background-blend-mode:multiply;
+
+    background-size:cover;
+    background-repeat:repeat;
+    background-attachment:fixed;
+
+    overflow-x:hidden;
+}
+
+/* SECTIONS */
+
+#left,
+#right{
+    width:50%;
+    min-height:100vh;
+
+    position:relative;
+}
+
+/* STICKERS */
+
+#juju{
+    position:absolute;
+
+    top:2vh;
+    left:5vw;
+
+    width:clamp(180px, 25vw, 400px);
+
+    transform:rotate(-30deg);
+}
+
+#babies{
+    position:absolute;
+
+    top:5vh;
+    left:55%;
+
+    width:clamp(150px, 22vw, 500px);
+
+    transform:rotate(9deg);
+}
+
+#boys{
+    position:absolute;
+
+    top:35vh;
+    left:1vw;
+
+    width:clamp(180px, 30vw, 500px);
+
+    transform:rotate(-9deg);
+}
+
+#chichi{
+    position:absolute;
+
+    top:40vh;
+    left:55%;
+
+    width:clamp(140px, 20vw, 420px);
+
+    transform:rotate(13deg);
+}
+
+#hbd{
+    position:absolute;
+
+    top:22vh;
+    right:1vw;
+
+    width:clamp(250px, 60vw, 1000px);
+
+    transform:rotate(9deg);
+}
+
+#rmn{
+    position:absolute;
+
+    top:95vh;
+    left:17vw;
+
+    width:clamp(120px, 18vw, 360px);
+
+    transform:rotate(-15deg);
+}
+
+#puni{
+    position:absolute;
+
+    top:110vh;
+    right:27vw;
+
+    width:clamp(150px, 25vw, 600px);
+
+    transform:rotate(13deg);
+}
+
+#jpn{
+    position:absolute;
+
+    top: 105vh;
+    left:45%;
+
+    width:clamp(180px, 30vw, 510px);
+
+    transform:rotate(3deg);
+}
+
+/* LETTER */
+
+.spacer{
+    height:90vh;
+}
+
+#letter{
+    width:min(90%, 800px);
+
+    min-height:1000px;
+
+    margin:auto;
+
+    background-image:url("nobg/letter.png");
+
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-position:center top;
+
+    position:relative;
+}
+
+#letterContent{
+    position:absolute;
+
+    top:11%;
+    left:12%;
+    right:12%;
+
+    color:black;
+
+    line-height:1.8;
+
+    font-size:clamp(12px, 1vw, 16px);
+}
+
+#letterContent p{
+    font-size:clamp(12px, 1vw, 20px);
+}
+
+h1{
+    font-weight:700;
+
+    font-size:clamp(20px, 2vw, 34px);
+}
+
+/* TICKET */
+
+#tix{
+    position:absolute;
+
+    top:150vh;
+    left:10vw;
+
+    width:clamp(180px, 25vw, 520px);
+
+    cursor:pointer;
+
+    transition:0.3s ease;
+}
+
+#tix:hover{
+    transform:scale(1.05);
+}
+
+/* TABLET */
+
+@media (max-width: 1100px){
+
+    body{
+        flex-direction:column;
+    }
+
+    #left,
+    #right{
+        width:100%;
+    }
+
+    #hbd{
+        top:5vh;
+        width:80%;
+    }
+
+    #letter{
+        min-height:900px;
+    }
+
+    #tix{
+        top:120vh;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px){
+
+    body{
+        flex-direction:column;
+    }
+
+    #left,
+    #right{
+        width:100%;
+        min-height:auto;
+    }
+
+    .spacer{
+        height:65vh;
+    }
+
+    #juju{
+        width:45vw;
+        left:5vw;
+    }
+
+    #babies{
+        width:38vw;
+        left:55%;
+    }
+
+    #boys{
+        width:50vw;
+        top:38vh;
+    }
+
+    #chichi{
+        width:35vw;
+        left:58%;
+    }
+
+    #hbd{
+        position:relative;
+
+        width:95%;
+
+        top:0;
+        right:0;
+
+        margin:auto;
+        display:block;
+    }
+
+    #letter{
+        width:95%;
+
+        min-height:850px;
+    }
+
+    #letterContent{
+        top:12%;
+        left:10%;
+        right:10%;
+    }
+
+    #rmn{
+        top:10vh;
+        left:3vw;
+
+        width:30vw;
+    }
+
+    #jpn{
+        top:35vh;
+        left:35%;
+
+        width:50vw;
+    }
+
+    #puni{
+        top:55vh;
+        right:5vw;
+
+        width:40vw;
+    }
+
+    #tix{
+        position:relative;
+
+        top:80vh;
+        left:50%;
+
+        transform:translateX(-50%);
+
+        display:block;
+    }
+
+    #tix:hover{
+        transform:
+        translateX(-50%)
+        scale(1.05);
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="left">
+
+    <img src="nobg/13.png" id="juju">
+
+    <img src="nobg/7.png" id="babies">
+
+    <img src="nobg/6.png" id="boys">
+
+    <img src="nobg/4.png" id="chichi">
+
+    <div class="spacer"></div>
+
+    <div id="letter">
+
+        <div id="letterContent">
+
+            <h1>My Dearest Jenjen,</h1>
+
+            <p>
+                On your special day, I want you to know how deeply you are cherished by the people around you.
+            </p>
+
+            <p>
+                You are someone who brings warmth to this world. You may not realize it, but you bring comfort and kindness to people around you, and you make others feel very lucky to know you.
+            </p>
+
+            <p>
+                You are very authentic and genuine, and the way you view life positively is something I really admire about you.
+            </p>
+
+            <p>
+                I hope you are proud of yourself for how far you’ve come. I am always proud of you, and I’ll always be here to support you.
+            </p>
+
+            <p>
+                I hope this year gives back even a fraction of the love you give to the world, and i hope it brings you peace, happiness, and growth. I also hope I get to be beside you through a lot of it.
+            </p>
+
+            <p>
+                Happy birthday baby. I love you sooo muuuch.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="right">
+
+    <img src="nobg/12.png" id="hbd">
+
+    <img src="nobg/9.png" id="rmn">
+
+    <img src="nobg/puni.png" id="puni">
+
+    <img src="nobg/2.png" id="jpn">
+
+    <a href="museum.html">
+        <img src="nobg/ticket.png" id="tix">
+    </a>
+
+</div>
+
+</body>
+</html>

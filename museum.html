@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Museum of You</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:
+    linear-gradient(
+        rgba(0, 18, 0, 0.96),
+        rgba(0, 18, 0, 0.96)
+    ),
+    url("texture.png");
+
+    background-size:cover;
+    background-repeat:repeat;
+    background-attachment:fixed;
+    background-blend-mode:multiply;
+
+    color:#f4eee0;
+}
+
+/* MUSEUM */
+
+.museum{
+    position:relative;
+
+    height:100vh;
+
+    display:flex;
+    align-items:center;
+
+    gap:clamp(40px, 8vw, 140px);
+
+    padding:0 clamp(40px, 8vw, 180px);
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    scroll-behavior:smooth;
+}
+
+.museum::-webkit-scrollbar{
+    height:8px;
+}
+
+.museum::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,0.08);
+    border-radius:20px;
+}
+
+/* DARKNESS */
+
+#darkness{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.80);
+
+    pointer-events:none;
+
+    transition:2.5s ease;
+
+    z-index:15;
+}
+
+#darkness.light-on{
+    background:rgba(0,0,0,0.18);
+}
+
+/* BUTTON */
+
+#lightButton{
+    position:fixed;
+
+    top:30px;
+    right:30px;
+
+    z-index:30;
+
+    padding:18px 38px;
+
+    border:none;
+    border-radius:50px;
+
+    background:#d8c59f;
+
+    color:#011c01;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s ease;
+}
+
+#lightButton:hover{
+    transform:
+    scale(1.04);
+}
+
+#lightButton.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+/* TITLE */
+
+#title{
+    position:fixed;
+
+    top:clamp(20px, 4vw, 40px);
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:clamp(20px, 4vw, 42px);
+
+    letter-spacing:4px;
+
+    opacity:0.2;
+
+    z-index:20;
+
+    text-align:center;
+}
+
+/* FRAMES */
+
+.frame{
+    position:relative;
+
+    background:#e6dbc3;
+
+    padding:clamp(8px, 1vw, 14px);
+
+    border-radius:4px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.45);
+
+    z-index:5;
+
+    flex-shrink:0;
+}
+
+/* IMAGES */
+
+.frame img{
+    display:block;
+
+    width:clamp(180px, 22vw, 320px);
+    height:clamp(240px, 30vw, 420px);
+
+    object-fit:cover;
+
+    filter:brightness(0.45);
+
+    transition:2.5s ease;
+}
+
+/* LARGE */
+
+.large img{
+    width:clamp(260px, 34vw, 500px);
+    height:clamp(180px, 24vw, 340px);
+}
+
+/* XLARGE */
+
+.xlarge img{
+    width:clamp(240px, 30vw, 440px);
+    height:clamp(340px, 42vw, 600px);
+}
+
+/* SMALL */
+
+.small img{
+    width:clamp(160px, 18vw, 260px);
+    height:clamp(220px, 26vw, 340px);
+}
+
+/* SPOTLIGHT */
+
+.spotlight{
+    position:absolute;
+
+    top:-220px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:clamp(220px, 35vw, 420px);
+    height:clamp(220px, 35vw, 420px);
+
+    background:
+    radial-gradient(
+        rgba(255,248,210,0.22),
+        transparent 70%
+    );
+
+    opacity:0;
+
+    transition:3s ease;
+
+    pointer-events:none;
+
+    z-index:2;
+}
+
+/* LIGHT ON */
+
+.lights-on .spotlight{
+    opacity:1;
+}
+
+.lights-on img{
+    filter:brightness(1);
+}
+
+/* LABEL */
+
+.label{
+    padding-top:14px;
+
+    color:#111;
+}
+
+.label h2{
+    margin-bottom:6px;
+
+    font-size:20px;
+}
+
+.label p{
+    font-size:14px;
+
+    line-height:1.5;
+
+    opacity:0.7;
+}
+
+/* VIGNETTE */
+
+.vignette{
+    position:fixed;
+    inset:0;
+
+    box-shadow:
+    inset 0 0 250px rgba(0,0,0,0.85);
+
+    pointer-events:none;
+
+    z-index:12;
+}
+#backButton{
+    position:fixed;
+
+    top:30px;
+    left:30px;
+
+    z-index:50;
+
+    padding:12px 24px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    background:rgba(232, 220, 194, 0.12);
+
+    border:1px solid rgba(232, 220, 194, 0.2);
+
+    color:#f4eee0;
+
+    backdrop-filter:blur(6px);
+
+    font-size:16px;
+
+    transition:0.3s ease;
+}
+#backButton:hover{
+    background:rgba(232, 220, 194, 0.22);
+
+    transform:translateY(-2px);
+}
+/* TABLET */
+
+@media (max-width: 1024px){
+
+    .museum{
+        gap:60px;
+
+        padding:0 60px;
+    }
+
+}
+
+/* MOBILE */
+
+@media (max-width: 768px){
+
+    body{
+        overflow:auto;
+    }
+
+    .museum{
+        align-items:center;
+
+        gap:40px;
+
+        padding:0 30px;
+    }
+
+    #title{
+        width:90%;
+    }
+
+    #lightButton{
+        width:max-content;
+    }
+
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 480px){
+
+    .museum{
+        gap:30px;
+
+        padding:0 20px;
+    }
+
+    .frame{
+        padding:8px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="darkness"></div>
+
+<div class="vignette"></div>
+
+<h1 id="title">
+    U DA REAL ART
+</h1>
+<a href="jen.html" id="backButton">
+    ← Back
+</a>
+<button id="lightButton">
+    Turn on the lights
+</button>
+
+<div class="museum" id="museum">
+
+    <div class="frame">
+        <div class="spotlight"></div>
+        <img src="images/jen1.jpg">
+    </div>
+
+    <div class="frame large">
+        <div class="spotlight"></div>
+        <img src="images/jen.jpeg">
+    </div>
+
+    <div class="frame small">
+        <div class="spotlight"></div>
+        <img src="images/jen5.jpg">
+    </div>
+
+    <div class="frame">
+        <div class="spotlight"></div>
+        <img src="images/jen2.jpg">
+    </div>
+
+    <div class="frame large">
+        <div class="spotlight"></div>
+        <img src="images/jen4.jpg">
+    </div>
+
+    <div class="frame xlarge">
+        <div class="spotlight"></div>
+        <img src="images/mainjen.jpg">
+    </div>
+
+    <div class="frame large">
+        <div class="spotlight"></div>
+        <img src="images/jen3.jpg">
+    </div>
+
+    <div class="frame">
+        <div class="spotlight"></div>
+        <img src="images/jen6.jpg">
+    </div>
+
+    <div class="frame large">
+        <div class="spotlight"></div>
+        <img src="images/jen7.jpg">
+    </div>
+
+</div>
+
+<script>
+
+const button = document.getElementById("lightButton");
+
+const museum = document.getElementById("museum");
+
+const darkness = document.getElementById("darkness");
+
+button.addEventListener("click", () => {
+
+    museum.classList.add("lights-on");
+
+    darkness.classList.add("light-on");
+
+    button.classList.add("hide");
+
+});
+
+museum.addEventListener("wheel", (event) => {
+
+    event.preventDefault();
+
+    museum.scrollLeft += event.deltaY;
+
+});
+</script>
+
+</body>
+</html>
